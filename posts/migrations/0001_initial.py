@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(error_messages={'unique': '이미 있는 제목입니다.'}, max_length=50, unique=True)),
                 ('content', models.TextField()),
-                ('Nicknames', models.CharField(max_length=50)),
+                ('nicknames', models.CharField(max_length=50)),
                 ('dt_created', models.DateTimeField(auto_now_add=True, verbose_name='Date Create')),
                 ('dt_modified', models.DateTimeField(auto_now=True, verbose_name='Date Modified')),
             ],
