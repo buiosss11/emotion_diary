@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block posts_contain %}
+
+<hr>
+<br>
+<h3>글 목록</h3>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">제목</th>
+            <th scope="col">내용</th>
+            <th scope="col">작성일</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in page_obj %}
+        <tr>
+            <th scope="row">{{post.id}}</th>
+            <td><a href={% url 'post-detail' post.id %}>{{post.title}}</a></td>
+            <td><a href={% url 'post-detail' post.id %}>{{post.content|truncatechars:40}}</a></td>
+            <td><a href={% url 'post-detail' post.id %}>{{post.dt_created}}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">이전</a></li>
+        {% endif %}
+
+        {% for page in paginator.page_range %}
+        <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">다음</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock posts_contain %}

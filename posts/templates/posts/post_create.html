@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+
+
+
+
+{% block posts_contain %}
+    <form method="POST">{% csrf_token %}
+        <label>제목</label>
+        <p>{{form.title}}</p>
+        <label>내용</label>
+        <p>{{form.content}}</p>
+        <label>이름</label>
+        <p>{{form.Nicknames}}</p>
+        <input type="submit" value="작성 완료">
+    </form>
+    <a href={% url "post-list" %}>돌아가기</a>
+{% endblock posts_contain %}

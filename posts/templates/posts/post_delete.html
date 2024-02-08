@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+
+
+{% block posts_contain %}
+<h1>{{post.title}}</h1>
+<p>{{post.content}}</p>
+<p>{{post.Nicknames}}</p>
+<p>{{post.id}}</p>
+<hr>
+<p>정말 삭제 하시겠습니까?</p>
+<form method="POST">{% csrf_token %}
+    <div class="confirm_btn">
+        <input type="submit" value="삭제하기">
+    </div>
+</form>
+{% endblock posts_contain %}
