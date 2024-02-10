@@ -9,7 +9,7 @@ def post_list(request):
     posts = Post.objects.all()
     page = request.GET.get("page")
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 10)
     try:
         page_obj = paginator.page(page)
         
@@ -53,9 +53,17 @@ def post_delete(request, post_id):
         return render(request, "posts/post_delete.html", {"post": post})
 
 
-# def post_update(request):
-
-#     return
+def post_update(request, post_id):
+    post = Post.objects.get(id = post_id)
+    if request.method == "POST":
+        post_form = PostForm(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect("post-detail",post_id = post.id)
+    else:
+        form = PostForm(instance=post)
+        context = {"post":post,"form":form}
+        return render(request,"posts/post_update.html",context)
 
 
     

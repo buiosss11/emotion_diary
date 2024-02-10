@@ -1,6 +1,11 @@
 {% extends "./base.html" %}
 {% load static %}
 
+{% block header-title %}
+<span><span class="text-primary">{{post.nicknames}}</span>의 글 삭제</span>
+{% endblock header-title %}
+
+
 {% block posts_contain %}
 <h1>{{post.title}}</h1>
 <p>{{post.content}}</p>

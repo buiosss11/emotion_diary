@@ -1,15 +1,26 @@
 {% extends "./base.html" %}
 {% load static %}
 
+{% block header-title %}
+<span><span class="text-primary">{{post.nicknames}}</span>의 글</span>
+{% endblock header-title %}
 
 {% block posts_contain %}
-<h1>{{post.title}}</h1>
-<p>{{post.content}}</p>
-<p>{{post.nicknames}}</p>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary">목록으로</button>
-    <button type="button" class="btn btn-secondary">삭제하기</button>
+<div class="border-bottom border-primary">
+    <label>제목</label>
+    <h5>{{post.title}}</h1>
 </div>
-<a href={% url 'post-list' %}>목록으로</a>
-<a href={% url 'post-delete' post.id %}>삭제하기</a>
+<div class="border-bottom border-primary">
+    <label>내용</label>
+    <p>{{post.content}}</p>
+</div>
+<div class="border-bottom border-primary">
+    <label>작성자</label>
+    <p>{{post.nicknames}}</p>
+</div>
+
+<br>
+<a href={% url 'post-list' %} class="btn btn-primary">목록으로</a>
+<a href={% url 'post-edit' post.id %} class="btn btn-primary">수정하기</a>
+<a href={% url 'post-delete' post.id % class="btn btn-primary" }>삭제하기</a>
 {% endblock posts_contain %}

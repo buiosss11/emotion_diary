@@ -1,18 +1,18 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block posts_contain %}
+{% block header-title %}
+<span>Diray 목록</span>
+{% endblock header-title %}
 
-<hr>
-<br>
-<h3>글 목록</h3>
-<hr>
+{% block posts_contain %}
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">제목</th>
             <th scope="col">내용</th>
+            <th scope="col">작성자</th>
             <th scope="col">작성일</th>
         </tr>
     </thead>
@@ -20,9 +20,10 @@
         {% for post in page_obj %}
         <tr>
             <th scope="row">{{post.id}}</th>
-            <td><a href={% url 'post-detail' post.id %}>{{post.title}}</a></td>
-            <td><a href={% url 'post-detail' post.id %}>{{post.content|truncatechars:40}}</a></td>
-            <td><a href={% url 'post-detail' post.id %}>{{post.dt_created}}</a></td>
+            <td><a class="text-black text-decoration-none" href={% url 'post-detail' post.id %}>{{post.title}}</a></td>
+            <td><a class="text-black text-decoration-none" href={% url 'post-detail' post.id %}>{{post.content|truncatechars:20}}</a></td>
+            <td><a class="text-black text-decoration-none" href={% url 'post-detail' post.id %}>{{post.nicknames}}</a></td>
+            <td><a class="text-black text-decoration-none" href={% url 'post-detail' post.id %}>{{post.dt_created}}</a></td>
         </tr>
         {% endfor %}
     </tbody>
