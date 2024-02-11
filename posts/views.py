@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def post_list(request):
@@ -29,7 +29,6 @@ def post_list(request):
 def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     context = {"post": post}
-
     return render(request, "posts/post_detail.html", context)
 
 
@@ -40,7 +39,8 @@ def post_create(request):
             new_post = post_form.save()
             return redirect("post-detail", post_id=new_post.id)
     else:
-        post_form = PostForm()
+        initial_data = {'nicknames' : request.user.username}
+        post_form = PostForm(initial=initial_data)
         return render(request, "posts/post_create.html", {"form": post_form})
 
 
@@ -61,9 +61,7 @@ def post_update(request, post_id):
             post_form.save()
             return redirect("post-detail",post_id = post.id)
     else:
-        form = PostForm(instance=post)
+        initial_data = {'nicknames' : request.user.username}
+        form = PostForm(instance=post, initial=initial_data)
         context = {"post":post,"form":form}
         return render(request,"posts/post_update.html",context)
-
-
-    
