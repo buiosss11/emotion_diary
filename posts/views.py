@@ -8,11 +8,9 @@ from django.contrib.auth import authenticate, login, logout
 def post_list(request):
     posts = Post.objects.all()
     page = request.GET.get("page")
-
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 2)
     try:
         page_obj = paginator.page(page)
-        
     except PageNotAnInteger:
         page = 1
         page_obj = paginator.page(page)
