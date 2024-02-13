@@ -8,16 +8,31 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["username", "password"]
-        widget = {
+        widgets = {
             "username": forms.TextInput(
-                attrs={
-                    'id':'user_id'
-                    }
                 ),
             "password": forms.TextInput(
                 attrs={
                     "type": "password", 
-                    "class": "teetetet"
                     }
             )
         }
+class CreateUserForm(forms.ModelForm):
+    class Meta :
+        model = User
+        fields = ["username","password","email","last_name","first_name"]
+        widgets = {
+            "username":forms.TextInput(),
+            "password":forms.TextInput(attrs={"type":"password"}),
+            "email":forms.TextInput(),
+            "last_name":forms.TextInput(),
+            "first_name":forms.TextInput(),
+        }
+
+
+
+class EditUserForm(forms.ModelForm):
+    email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = ['username','email','first_name','last_name']

@@ -1,0 +1,19 @@
+
+
+{% extends "./base.html" %}
+{% load static %}
+
+{% block users_contain %}
+<span><span class="text-primary">{{user.username}}</span> 비밀번호 변경</span>
+<hr>
+<form method="POST">{% csrf_token %}
+    <label>변경 전 비밀번호</label>
+    <p>{{form.old_password}}</p>
+    <label>새로운 비밀번호</label>
+    <p>{{form.new_password1}}</p>
+    <label>비밀 번호 확인</label>
+    <p>{{form.new_password2}}</p>
+    <input class="btn btn-outline-primary" type="submit" value="정보 변경">
+    <a href={% url "post-list" %} class="btn btn-primary">돌아가기</a>
+</form>
+{% endblock users_contain %}

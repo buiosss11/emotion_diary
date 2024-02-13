@@ -2,13 +2,14 @@
 {% load static %}
 
 {% block users_contain %}
-<h1>로그인 Form 테스트</h1>
+<h1>로그인</h1>
 <form method="POST">{% csrf_token %}
     <label for="formControlInput" class="form-label">아이디</label>
     <p>{{form.username}}</p>
     <label for="formControlInput" class="form-label">비밀번호</label>
     <p>{{form.password}}</p>
     <input class="btn btn-outline-primary" type="submit" value="로그인">
+    <a href={% url "user-create" %} class="btn btn-primary">회원가입</a>
     <a href={% url "post-list" %} class="btn btn-primary">돌아가기</a>
 </form>
 {% endblock users_contain %}

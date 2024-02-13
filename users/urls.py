@@ -22,4 +22,7 @@ urlpatterns = [
     # path('login/', auth_views.LoginView.as_view(),name="user-login"),
     path('login/', views.user_login ,name="user-login"),
     path('logout/', views.user_logout, name="user-logout"),
+    path('new/', views.user_create, name="user-create"),
+    path('pw_edit/', views.user_pw_edit, name="user-pw-change"),
+    path('edit/<int:user_id>/', views.user_edit, name="user-edit"),
 ]
